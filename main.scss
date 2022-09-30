@@ -28,10 +28,11 @@ body {
 
 .header {
   background: linear-gradient(
-    to bottom right,
-    transparentize($color-primary-light, 0.3),
-    transparentize($color-primary-dark, 0.3)
-  ), url("./images/fond.jpg");
+      to bottom right,
+      transparentize($color-primary-light, 0.3),
+      transparentize($color-primary-dark, 0.3)
+    ),
+    url("./images/fond.jpg");
   background-position: center;
   background-size: cover;
   clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%);
@@ -39,18 +40,18 @@ body {
   position: relative;
 
   // logo
-  &__logo-box{
+  &__logo-box {
     left: 4rem;
     position: absolute;
     top: 4rem;
   }
 
-  &__logo{
+  &__logo {
     height: 3.5rem;
-  } 
+  }
 
   //titre
-  &__text-box{
+  &__text-box {
     left: 50%;
     position: absolute;
     text-align: center;
@@ -61,13 +62,13 @@ body {
 
 // titre
 
-.heading-primary{
+.heading-primary {
   color: $color-white;
   margin-bottom: 6rem;
   text-transform: uppercase;
 
   // titre principal
-  &--main{
+  &--main {
     display: block;
     font-size: 6rem;
     font-weight: 400;
@@ -75,7 +76,7 @@ body {
     animation: move-in-left 1s ease-out;
   }
 
-  &--sub{
+  &--sub {
     display: block;
     font-size: 2rem;
     font-weight: 700;
@@ -84,7 +85,7 @@ body {
   }
 }
 
-@keyframes move-in-left{
+@keyframes move-in-left {
   0% {
     opacity: 0;
     transform: translateX(-10rem);
@@ -100,7 +101,7 @@ body {
   }
 }
 
-@keyframes move-in-right{
+@keyframes move-in-right {
   0% {
     opacity: 0;
     transform: translateX(10rem);
@@ -113,5 +114,72 @@ body {
   100% {
     opacity: 1;
     transform: translateX(0);
+  }
+}
+
+// button
+
+.btn {
+  &:link,
+  &:visited {
+    border-radius: 10rem;
+    display: inline-block;
+    font-size: 1.6rem;
+    padding: 1.5rem 4rem;
+    position: relative; /* pour l'animation */
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  &::after{
+    content: "";
+    background: $color-white;
+    border-radius: 10rem;
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    transition: all 0.4s;
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+    /* offset-x | offset-y | blur-radius | spread-radius | color */
+    box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+
+    &::after{
+      transform: scaleX(1.4) scaleY(1.6);
+      opacity: 0;
+    }
+  }
+
+  &:active {
+    transform: translateY(-1px);
+    box-shadow: 0 0.5rem 1rem rgba($color: $color-black, $alpha: 0.2);
+  }
+
+  &--white {
+    background: $color-white;
+    color: $color-gray-dark;
+  }
+
+  &--animated {
+    animation: move-in-button 0.5s ease-out 0.75s;
+    animation-fill-mode: backwards;
+  }
+}
+
+@keyframes move-in-button {
+  0% {
+    opacity: 0;
+    transform: translateY(3rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
